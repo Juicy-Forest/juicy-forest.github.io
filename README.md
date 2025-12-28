@@ -43,7 +43,20 @@ The platform uses a microservices architecture:
 - WebSocket (ws library)
 - JWT Authentication
 
----
+## Branching Model 
 
+- **Main branch:** for the major releases, only production-ready functional code goes here merged from the release branch.
+
+- **Release branch:** for final testing and staging before merges are made to the main, code here comes from merges from the development branch and should be production-ready.
+
+- **Development branch:** for active development of features, the integration point for all feature work. Code here should be functional but can still contain small errors, these must however be fixed before release branch merges.
+
+- **Feature branches:** branch off of development and are used to work on individual features, they should be titled "feature/feature-name" and merged into only the development branch when completed.
+
+- **Hotfix branches:** when a hotfix has to take place, a branch for this is made titled "hotfix/hotfix-name", in which the issue is resolved. Hotfixes will only take place and be merged on the development branch, if the hotfix is essential to the development of a feature, it should be pulled into that feature after it has been fixed in the development branch. by fixing all issues of the versions of the development branch that are being merged into release, hotfixes won't have to take place on the release or main branches.
+
+<img width="1230" height="500" alt="image" src="https://github.com/user-attachments/assets/6d61d401-98ec-41f8-9235-312686cf1d24" />
+
+---
 > 📝 This wiki is a work in progress. Some sections may be incomplete.
 
