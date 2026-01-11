@@ -8,6 +8,7 @@ Juicy Forest helps teams manage their community gardens with features for invent
 
 ## Features
 
+- **[Settings](features/admin-dashboard.md)** — User profile and garden administration
 - **[Chat](features/chat.md)** — Real-time messaging with channels and typing indicators
 - **[Inventory](features/inventory.md)** — Track garden supplies and equipment
 - **[Tasks](features/tasks.md)** — Manage and assign garden tasks
