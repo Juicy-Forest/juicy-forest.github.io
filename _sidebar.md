@@ -6,6 +6,7 @@
   - [Tasks](features/tasks.md)
   - [Map](features/map.md)
   - [Garden](features/garden.md)
+  - [Admin Dashboard](features/admin-dashboard.md)
 
 - **Guides**
   - [Getting Started](guides/getting-started.md)
