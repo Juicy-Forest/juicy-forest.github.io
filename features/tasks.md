@@ -265,7 +265,7 @@ Validation runs on form submit, and the backend reinforces these rules using Mon
 ## Data Flow Diagrams
 
 ### Creating a Task
-
+```
 ┌─────────┐           ┌─────────┐           ┌─────────┐         ┌─────────┐
 │ Client  │           │   API   │           │ Server  │           │ MongoDB │
 │   UI    │           │ Gateway │           │ Service │           │         │
@@ -289,10 +289,10 @@ Validation runs on form submit, and the backend reinforces these rules using Mon
      │◀───────────────────│                     │                     │
      │ {_id, name, ...}    │                     │                     │
      │                     │                     │                     │
-
+```
 
 ### Updating a Task
-
+```
 ┌─────────┐           ┌─────────┐           ┌─────────┐           ┌─────────┐
 │ Client  │           │   API   │           │ Server  │           │ MongoDB │
 │   UI    │           │ Gateway │           │ Service │           │         │
@@ -316,9 +316,9 @@ Validation runs on form submit, and the backend reinforces these rules using Mon
      │◀───────────────────│                     │                     │
      │ Updated task        │                     │                     │
      │                     │                     │                     │
-
+```
 ### Deleting a Task
-
+```
 ┌─────────┐           ┌─────────┐           ┌─────────┐           ┌─────────┐
 │ Client  │           │   API   │           │ Server  │           │ MongoDB │
 │   UI    │           │ Gateway │           │ Service │           │         │
@@ -341,7 +341,7 @@ Validation runs on form submit, and the backend reinforces these rules using Mon
      │◀───────────────────│                     │                     │
      │ (Empty response)    │                     │                     │
      │                     │                     │                     │
-
+```
 ---
 
 ## Security & Validation
