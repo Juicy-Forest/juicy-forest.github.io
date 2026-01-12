@@ -157,7 +157,7 @@ Requests to http://localhost:3030/gardens are forwarded to the Server Service.
 ### 1. GET /gardens
 
 **Response (200 OK):**
-```json
+```
 [
   {
     "_id": "6599b864...",
@@ -167,9 +167,10 @@ Requests to http://localhost:3030/gardens are forwarded to the Server Service.
     "createdAt": "2024-01-10T12:00:00Z"
   }
 ]
+```
 2. POST /gardens
 Request Body:
-
+```
 json
 Code kopieren
 {
@@ -185,31 +186,28 @@ Code kopieren
   "ownerId": "658aa123...",
   "members": ["658aa123..."]
 }
+```
 3. POST /gardens/:id/sections
 Request Body:
-
-json
-Code kopieren
+```
 {
   "name": "Greenhouse",
   "order": 1
 }
 Response (201 Created):
 
-json
-Code kopieren
 {
   "_id": "65bb111...",
   "name": "Greenhouse",
   "gardenId": "65aa999...",
   "order": 1
 }
+```
 Frontend
 Component Structure
 The garden UI is built with SvelteKit and organized as follows:
 
-css
-Code kopieren
+```
 client/src/
 ├── routes/gardens/
 │   ├── +page.svelte
@@ -223,6 +221,7 @@ client/src/
 │       ├── GardenSettingsModal.svelte
 │       ├── GardenSectionList.svelte
 │       └── GardenSectionItem.svelte
+```
 State Management
 The gardenStore manages garden state globally.
 
@@ -254,10 +253,10 @@ Sections provide organizational structure for plants, inventory, and tasks. They
 
 Data Flow Diagrams
 Creating a Garden
-arduino
-Code kopieren
+```
 Client → API Gateway → Server Service → MongoDB
 POST /gardens        createGarden()     Garden.create()
+```
 Security & Validation
 All routes require authentication
 
