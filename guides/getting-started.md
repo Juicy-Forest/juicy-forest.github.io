@@ -13,8 +13,8 @@ This guide will help you set up your local development environment for Juicy For
 ## Prerequisites
 
 - Node.js 18+
-- MongoDB
-- npm or yarn
+- Docker
+- npm 
 
 ## Quick Start
 
@@ -25,8 +25,7 @@ git clone https://github.com/juicy-forest/client
 
 # Backend setup
 cd backend
-npm install
-npm run dev
+docker compose up -d
 
 # Client setup (in another terminal)
 cd client
