@@ -222,49 +222,165 @@ client/src/
 │       ├── GardenSectionList.svelte
 │       └── GardenSectionItem.svelte
 ```
-State Management
-The gardenStore manages garden state globally.
+GardenCreationStore
+
+The GardenCreationStore class (gardenCreationStore.svelte.ts) manages all state related to creating, editing, and deleting gardens using Svelte 5 runes. It centralizes modal control, form handling, validation, and API interactions for garden lifecycle management.
 
 Reactive State Properties
-Property	Description
-gardens	Accessible gardens
-selectedGardenId	Active garden
-sections	Sections for selected garden
-isModalOpen	Modal visibility state
-modalMode	create / edit / delete
+Property	Type	Description
+selectedGardenId	string | null	Currently selected garden ID
+isModalOpen	boolean	Controls garden modal visibility
+modalMode	string	Modal mode: "create", "edit", "delete"
+selectedGarden	any	Garden being edited or deleted
+formData	object	Form state for create/edit garden
+errors	object	Validation errors for garden form
+showToast	boolean	Toast visibility flag
+toastMessage	object	Toast title and message content
+isSubmitting	boolean	Prevents duplicate submissions during API calls
+Key Methods
+Method	Description
+openCreateModal()	Opens the garden modal in create mode
+openEditModal(garden)	Opens the modal prefilled with garden data
+openDeleteModal(garden)	Opens delete confirmation modal
+closeModal()	Closes modal and resets local state
+handleSubmit()	Routes create, update, or delete logic based on mode
+createGarden()	Sends POST request to create a new garden
+updateGarden()	Sends PUT request to update an existing garden
+deleteGarden()	Sends DELETE request for selected garden
+validateForm()	Validates form inputs and populates errors
+resetForm()	Clears form data and validation state
+Garden Form Data Shape
+```
+formData = {
+  name: "",
+  location: "",
+  description: "",
+  size: "",
+  createdAt: null
+};
+```
+Context Usage
 
-Garden Membership & Permissions
-Owner
-Full control
+The garden pages use Svelte context to share selected garden state and allow child components to react to garden changes without prop drilling.
 
-Can delete garden
+Context Setup
+```
+<!-- +layout.svelte or +page.svelte -->
+<script lang="ts">
+  const selectedGardenId = $state({ value: null });
+  setContext("selectedGardenId", selectedGardenId);
+</script>
+```
+Context Consumption
+```
+<script lang="ts">
+  const selectedGardenId = getContext("selectedGardenId");
+</script>
+```
 
-Can manage members
+This enables inventory, task, and analytics pages to remain synchronized with the currently active garden.
 
-Member
-Access to garden features
+Page Loading & Data Fetching
 
-Cannot delete garden
+Gardens are loaded using SvelteKit’s page loader on navigation:
+```
+export const load = async ({ fetch }) => {
+  const response = await fetch("http://localhost:3030/gardens");
+  const gardens = await response.json();
+  return { gardens };
+};
+```
 
-Permissions are enforced server-side using the authenticated user ID.
+The selected garden is derived on the client:
+```
+const activeGarden = $derived(
+  data.gardens.find((g) => g._id === gardenCreationStore.selectedGardenId)
+);
+```
+Form Validation
 
-Section Management
-Sections provide organizational structure for plants, inventory, and tasks. They are optional but recommended for larger gardens.
+Garden creation and editing enforce the following validation rules:
+
+Field	Validation Rules
+name	Required, minimum 2 characters
+location	Required, non-empty string
+description	Optional, max 500 characters
+size	Optional, must be a positive value
+
+Validation runs on submit and displays inline error messages under each invalid field.
+
+Toast Notifications
+
+The store provides standardized feedback after each operation:
+
+Garden created successfully
+
+Garden updated successfully
+
+Garden deleted successfully
+
+Validation or API error feedback
+
+Toast state is automatically reset after dismissal.
 
 Data Flow Diagrams
 Creating a Garden
 ```
-Client → API Gateway → Server Service → MongoDB
-POST /gardens        createGarden()     Garden.create()
+┌─────────┐           ┌─────────┐           ┌─────────┐           ┌─────────┐
+│ Client  │           │   API   │           │ Server  │           │ MongoDB │
+│   UI    │           │ Gateway │           │ Service │           │         │
+└────┬────┘           └────┬────┘           └────┬────┘           └────┬────┘
+     │ POST /gardens       │                     │                     │
+     │ {name, location}   │                     │                     │
+     │────────────────────▶│                     │                     │
+     │                     │ Forward to          │                     │
+     │                     │ :3031/gardens       │                     │
+     │                     │────────────────────▶│                     │
+     │                     │                     │ createGarden()      │
+     │                     │                     │────────────────────▶│
+     │                     │                     │ Garden.create()     │
+     │                     │                     │                     │
+     │                     │                     │◀────────────────────│
+     │                     │◀────────────────────│                     │
+     │ 201 Created         │                     │                     │
+     │◀────────────────────│                     │                     │
+```
+Updating a Garden
+```
+PUT /gardens/:id
+→ updateGarden(id, data)
+→ findByIdAndUpdate({ runValidators: true })
+→ 200 OK
+```
+Deleting a Garden
+```
+DELETE /gardens/:id
+→ deleteGarden(id)
+→ findByIdAndDelete()
+→ 204 No Content
 ```
 Security & Validation
-All routes require authentication
+CORS
 
-User must be owner or member of the garden
+Restricted to CLIENT_URL (default: localhost:5173)
 
-Garden data is isolated using gardenId
+Credentials enabled for authenticated sessions
 
-Cascading deletes remove sections and related data
+Data Integrity
 
-Schema validation is enforced at the database level
+Garden name must be unique per user
+
+Required ownership checks on every mutation
+
+Schema-level validation enforced on create and update
+
+Authorization
+
+All garden mutations require a valid authenticated session
+
+Garden ownership is verified before update or delete operations
+
+Summary
+
+The GardenCreationStore provides a clean, centralized state management layer for garden lifecycle operations. By combining Svelte 5 runes, context sharing, and strict validation, it ensures consistency, security, and maintainability across all garden-related UI workflows.
 
