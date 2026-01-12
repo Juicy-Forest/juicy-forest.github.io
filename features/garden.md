@@ -152,11 +152,12 @@ const services = {
 
 Requests to http://localhost:3030/gardens are forwarded to the Server Service.
 
-Data Samples & JSON Formats
-GET /gardens
+## Data Samples & JSON Formats
 
-Response (200 OK):
+### 1. GET /gardens
 
+**Response (200 OK):**
+```json
 [
   {
     "_id": "6599b864...",
@@ -166,45 +167,49 @@ Response (200 OK):
     "createdAt": "2024-01-10T12:00:00Z"
   }
 ]
-POST /gardens
-
+2. POST /gardens
 Request Body:
 
+json
+Code kopieren
 {
   "name": "Community Garden"
 }
-
-
 Response (201 Created):
 
+json
+Code kopieren
 {
   "_id": "65aa999...",
   "name": "Community Garden",
   "ownerId": "658aa123...",
   "members": ["658aa123..."]
 }
-
-POST /gardens/:id/sections
-
+3. POST /gardens/:id/sections
 Request Body:
 
+json
+Code kopieren
 {
   "name": "Greenhouse",
   "order": 1
 }
+Response (201 Created):
 
-
-Response:
-
+json
+Code kopieren
 {
   "_id": "65bb111...",
   "name": "Greenhouse",
   "gardenId": "65aa999...",
   "order": 1
 }
-
 Frontend
 Component Structure
+The garden UI is built with SvelteKit and organized as follows:
+
+css
+Code kopieren
 client/src/
 ├── routes/gardens/
 │   ├── +page.svelte
@@ -218,29 +223,26 @@ client/src/
 │       ├── GardenSettingsModal.svelte
 │       ├── GardenSectionList.svelte
 │       └── GardenSectionItem.svelte
-
 State Management
-
 The gardenStore manages garden state globally.
 
+Reactive State Properties
 Property	Description
 gardens	Accessible gardens
 selectedGardenId	Active garden
-sections	Sections for garden
-isModalOpen	Modal state
+sections	Sections for selected garden
+isModalOpen	Modal visibility state
 modalMode	create / edit / delete
+
 Garden Membership & Permissions
-
-Owner:
-
+Owner
 Full control
 
 Can delete garden
 
 Can manage members
 
-Member:
-
+Member
 Access to garden features
 
 Cannot delete garden
@@ -248,29 +250,22 @@ Cannot delete garden
 Permissions are enforced server-side using the authenticated user ID.
 
 Section Management
-
 Sections provide organizational structure for plants, inventory, and tasks. They are optional but recommended for larger gardens.
 
 Data Flow Diagrams
 Creating a Garden
+arduino
+Code kopieren
 Client → API Gateway → Server Service → MongoDB
 POST /gardens        createGarden()     Garden.create()
-
 Security & Validation
-
 All routes require authentication
 
-User must be owner or member
+User must be owner or member of the garden
 
-Garden data is isolated by gardenId
+Garden data is isolated using gardenId
 
 Cascading deletes remove sections and related data
 
-Schema validation enforced at the database level
-
-
----
-
-If you want this **trimmed**, **expanded**, or **matched exactly to your current code**, say the word and specify which part.
-
+Schema validation is enforced at the database level
 
