@@ -262,10 +262,10 @@ The `GardenCreationStore` manages all state related to creating, editing, and de
 
 | Property         | Type          | Description                      |
 | ---------------- | ------------- | -------------------------------- |
-| selectedGardenId | string | null | Currently selected garden ID     |
+| selectedGardenId | string        | Currently selected garden ID     |
 | isModalOpen      | boolean       | Controls garden modal visibility |
 | modalMode        | string        | "create", "edit", or "delete"    |
-| selectedGarden   | Garden | null | Garden being edited or deleted   |
+| selectedGarden   | Garden        | Garden being edited or deleted   |
 | formData         | object        | Form state for create/edit       |
 | errors           | object        | Validation errors                |
 | showToast        | boolean       | Toast visibility flag            |
