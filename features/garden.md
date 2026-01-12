@@ -24,16 +24,18 @@ This document provides a comprehensive overview of the Garden feature in Juicy F
 
 ---
 
-┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
-│ SvelteKit │────▶│ API Gateway │────▶│ Server Service │
-│ Frontend │ │ (Port 3030) │ │ (Port 3031) │
-│ (Port 5173) │ └─────────────────┘ └────────┬────────┘
-│ │ │
-└─────────────────┘ ▼
-┌─────────────────┐
-│ MongoDB │
-│ (juicy-forest) │
-└─────────────────┘
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   SvelteKit     │────▶│   API Gateway   │────▶│  Server Service │
+│   Frontend      │     │   (Port 3030)   │     │  (Port 3031)    │
+│   (Port 5173)   │     └─────────────────┘     └────────┬────────┘
+│                 │                                      │
+└─────────────────┘                                      │
+                                                         ▼
+                                               ┌─────────────────┐
+                                               │    MongoDB      │
+                                               │  (juicy-forest) │
+                                               └─────────────────┘
+
 
 Frontend: Manages garden selection, creation, and section display  
 API Gateway: Proxies garden-related requests  
