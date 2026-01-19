@@ -64,7 +64,7 @@ The platform uses a microservices architecture:
 </summary>
 <div style="margin-top: 12px; color: #888; line-height: 1.6; font-size: 15px;">
 
-The project uses **Gitflow** — a structured branching model with develop, main, feature, and hotfix branches. While simpler strategies like GitHub Flow work for rapid deployment and Trunk-Based Development favors speed, Gitflow was chosen for its ability to balance **stability and organization**. It provides clear separation between active development and production releases, ensuring production-ready code on main while features are safely isolated. This is ideal for a growing team with defined roles and complex feature work that needs proper staging before deployment.
+The project uses **Gitflow** - a structured branching model with develop, main, feature, and hotfix branches. While simpler strategies like GitHub Flow work for rapid deployment and Trunk-Based Development favors speed, Gitflow was chosen for its ability to balance **stability and organization**. It provides clear separation between active development and production releases, ensuring production-ready code on main while features are safely isolated. This is ideal for a growing team with defined roles and complex feature work that needs proper staging before deployment.
 
 </div>
 </details>
