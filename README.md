@@ -58,6 +58,17 @@ The platform uses a microservices architecture:
 
 <img width="959" height="484" alt="image" src="https://github.com/user-attachments/assets/56a495ce-9e12-4503-bd60-a5e90a7fbd02" />
 
+<details style="padding: 12px 0; margin-top: 16px;">
+<summary style="font-weight: 600; cursor: pointer; user-select: none; color: #777; display: flex; align-items: center; gap: 8px;">
+<span style="font-size: 16px;">→</span> Why This Branching Model?
+</summary>
+<div style="margin-top: 12px; color: #888; line-height: 1.6; font-size: 15px;">
+
+The project uses **Gitflow** - a structured branching model with develop, main, feature, and hotfix branches. While simpler strategies like GitHub Flow work for rapid deployment and Trunk-Based Development favors speed, Gitflow was chosen for its ability to balance **stability and organization**. It provides clear separation between active development and production releases, ensuring production-ready code on main while features are safely isolated. This is ideal for a growing team with defined roles and complex feature work that needs proper staging before deployment.
+
+</div>
+</details>
+
 ## Pipelines
 The two images below show sequence diagrams for the frontend and backend GitHub actions pipelines. The main things happening in them are checking out the code, setting up node, installing dependencies, running lint, running the tests with a coverage report, getting an advanced code analysis from sonar cloud running npm run build and sending out a discord notification if something failed or passing if everything was successful. for the backend, an additional set of actions take place to test if the docker builds correctly and if so to push the container images to GitHub Container Registry as well.
 
