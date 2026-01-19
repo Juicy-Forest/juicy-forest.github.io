@@ -66,6 +66,33 @@ The platform uses a microservices architecture:
 
 The project uses **Gitflow** - a structured branching model with develop, main, feature, and hotfix branches. While simpler strategies like GitHub Flow work for rapid deployment and Trunk-Based Development favors speed, Gitflow was chosen for its ability to balance **stability and organization**. It provides clear separation between active development and production releases, ensuring production-ready code on main while features are safely isolated. This is ideal for a growing team with defined roles and complex feature work that needs proper staging before deployment.
 
+**Pros**
+-> Overall a very clear and simple structure since main, development, features and hotfixes all happen separately. Therefore makes it easy to work with new/large teams.
+-> The hotfixes allow production emergencies to be cleanly separated which reduces the disk of releasing broken code
+-> Very clear separation of responsibilities since each user can work on their feature on their branch.
+-> Features don't interfere with each other until merged due to their own branch (unlike a simple main/dev model)
+
+**Cons**
+-> Quite slow because there are many branches and a lot of merging happening. 
+-> Can result in a lot of merge conflicts, especially with larger features that get added closer to release time.
+-> Hotfixes have to be merged into main/development which can be easy to forget and can lead to bugs reappearing later.
+
+**Alternative we could have used:**
+**Github flow**
+
+**Pros:**
+-> Very simple since features directly go into main, no development, release or hotfix branches so with fewer branches, you have less mental overhead.
+-> Feature branches (PRs) are generally much smaller. Results in faster feedback because tests fail quickly, and less code = less code to fix if issues do appear.
+-> Much fewer merge conflicts because branches don't exist for that long (merged continuously) and so there is less divergence from the main branch
+
+**Cons:**
+-> Required discipline because it removes the development branch. A feature merged to main can break production immediately which can cause downtime to customer.
+-> PRs must be small because large PRs are harder to review, take longer to merge and increase the risk to main branch in case of issues (bascially more, PRs but each is lower risk).
+-> There is no explicit release phase because every merge is basically a release.
+
+**Our choice:**
+We chose the gitflow branching model because it's a lot safer, easier to manage for a team and we needed more explicit release phases (CIN). Gitflow also provides a very unambiguous answer to where to develop features and where integrations happen. Having an explicit release branch also allows for final testing and bug fixing before merging to main which was helpful because last minute fixes are sometimes unavoidable.
+
 </div>
 </details>
 
