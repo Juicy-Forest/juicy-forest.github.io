@@ -100,7 +100,7 @@ We chose the gitflow branching model because it's a lot safer, easier to manage 
 The two images below show sequence diagrams for the frontend and backend GitHub actions pipelines. The main things happening in them are checking out the code, setting up node, installing dependencies, running lint, running the tests with a coverage report, getting an advanced code analysis from sonar cloud running npm run build and sending out a discord notification if something failed or passing if everything was successful. for the backend, an additional set of actions take place to test if the docker builds correctly and if so to push the container images to GitHub Container Registry as well.
 
 **Pipeline frontend:**
-<img width="" height="" alt="image" src="https://github.com/user-attachments/assets/1c337d8f-82e5-45d9-abda-d2287640cd07" />
+<img width="" height="" alt="image" src="https://github.com/user-attachments/assets/148a8b9d-845b-465d-8c55-f13f59d8bc4c" />
 
 **Pipeline backend:**
 <img width="" height="" alt="image" src="https://github.com/user-attachments/assets/0e65ec22-47cf-4307-93cc-a9b7e174ac87" />
