@@ -28,5 +28,3 @@ npm run dev
 
 ---
 
-*Full documentation coming soon.*
-

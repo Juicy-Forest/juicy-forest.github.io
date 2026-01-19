@@ -12,3 +12,6 @@
   - [Getting Started](guides/getting-started.md)
   - [Contributing](guides/contributing.md)
 
+- **Documentation**
+  - [Code Coverage](documentation/code-coverage.md)
+  - [Sprint Planning](documentation/sprint-planning.md)

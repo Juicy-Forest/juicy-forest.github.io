@@ -19,5 +19,3 @@ We welcome contributions to Juicy Forest! Here's how you can help.
 
 ---
 
-*Full contribution guidelines coming soon.*
-
