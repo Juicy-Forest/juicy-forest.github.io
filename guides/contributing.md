@@ -1,11 +1,5 @@
 # Contributing
 
-> 🚧 **Documentation not yet written**
->
-> This page is a placeholder. The Contributing guide is coming soon.
-
----
-
 ## Overview
 
 We welcome contributions to Juicy Forest! Here's how you can help.
