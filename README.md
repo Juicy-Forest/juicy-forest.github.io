@@ -54,10 +54,16 @@ The platform uses a microservices architecture:
 
 - **Feature branches:** branch off of development and are used to work on individual features, they should be titled "feature/feature-name" and merged into only the development branch when completed.
 
-- **Hotfix branches:** when a hotfix has to take place, a branch for this is made titled "hotfix/hotfix-name", in which the issue is resolved. Hotfixes will only take place and be merged on the development branch, if the hotfix is essential to the development of a feature, it should be pulled into that feature after it has been fixed in the development branch. by fixing all issues of the versions of the development branch that are being merged into release, hotfixes won't have to take place on the release or main branches.
+- **Hotfix branches:** when a hotfix has to take place, a branch for this is made titled "hotfix/hotfix-name", in which the issue is resolved. Hotfixes will only take place and be merged on the development branch, if the hotfix is essential to the development of a feature, it should be pulled into that feature after it has been fixed in the development branch. by fixing all issues of the versions of the development branch that are being merged into release, hotfixes won't have to take place on the release or main branches. In exceptional cases where something must be hotfixed in main, this is still possible as seen at the end of the diagram, though this is not preferred.
 
-<img width="1230" height="500" alt="image" src="https://github.com/user-attachments/assets/6d61d401-98ec-41f8-9235-312686cf1d24" />
+<img width="959" height="484" alt="image" src="https://github.com/user-attachments/assets/56a495ce-9e12-4503-bd60-a5e90a7fbd02" />
 
----
-> 📝 This wiki is a work in progress. Some sections may be incomplete.
+## Pipelines
+The two images below show sequence diagrams for the frontend and backend GitHub actions pipelines. The main things happening in them are checking out the code, setting up node, installing dependencies, running lint, running the tests with a coverage report, getting an advanced code analysis from sonar cloud running npm run build and sending out a discord notification if something failed or passing if everything was successful. for the backend, an additional set of actions take place to test if the docker builds correctly and if so to push the container images to GitHub Container Registry as well.
+
+**Pipeline frontend:**
+<img width="" height="" alt="image" src="https://github.com/user-attachments/assets/1c337d8f-82e5-45d9-abda-d2287640cd07" />
+
+**Pipeline backend:**
+<img width="" height="" alt="image" src="https://github.com/user-attachments/assets/0e65ec22-47cf-4307-93cc-a9b7e174ac87" />
 
