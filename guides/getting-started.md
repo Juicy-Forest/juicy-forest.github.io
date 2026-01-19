@@ -1,11 +1,4 @@
 # Getting Started
-
-> 🚧 **Documentation not yet written**
->
-> This page is a placeholder. The Getting Started guide is coming soon.
-
----
-
 ## Overview
 
 This guide will help you set up your local development environment for Juicy Forest.
