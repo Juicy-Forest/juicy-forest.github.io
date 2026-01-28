@@ -1,5 +1,13 @@
 # Sprint Planning
 
+## Release schedule
+
+As a team it was agreed we had at least 1 major release per sprint.
+
+Sprint 1 - release v1.0 (both frontend and backend)
+Sprint 2 - release v2.0 (both frontend and backend)
+Sprint 3 - release v3.0 (both frontend and backend)
+
 ## Overview
 
 An overview of our sprint plants for this project
